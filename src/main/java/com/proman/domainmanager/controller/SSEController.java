@@ -11,7 +11,7 @@ public class SSEController {
     @Autowired
     private SSEService sseService;
 
-    @GetMapping("/sse")
+    @GetMapping("/api/sse")
     public SseEmitter handleSSE() {
         SseEmitter emitter = new SseEmitter();
 

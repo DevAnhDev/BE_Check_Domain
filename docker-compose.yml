@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  frontend:
+    image:  macpro0098/fe_amd_checkdomain:v0.0.1
+    ports:
+      - "80:80"
+    networks:
+      - my_network
+
+  backend:
+    image: macpro0098/be_amd_checkdomian:v0.0.1
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/checkdomain
+      - SPRING_DATASOURCE_USERNAME=checkdomain
+      - SPRING_DATASOURCE_PASSWORD=checkdomain
+    networks:
+      - my_network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=checkdomain
+      - MYSQL_DATABASE=checkdomain
+      - MYSQL_USER=checkdomain
+      - MYSQL_PASSWORD=checkdomain
+    volumes:
+      - /data/mysql_data:/var/lib/mysql  # Lưu trữ dữ liệu MySQL bên ngoài container
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

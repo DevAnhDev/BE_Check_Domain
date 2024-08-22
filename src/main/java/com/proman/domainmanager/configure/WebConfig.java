@@ -14,10 +14,13 @@ public class WebConfig implements WebMvcConfigurer {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
 //                        .allowedOrigins("http://62.72.44.55:3000") // Sử dụng URL frontend thực tế của bạn
-                        .allowedOrigins("http://15.235.131.29:3000") // Sử dụng URL frontend thực tế của bạ
+                        .allowedOrigins("http://51.79.208.204",
+                                        "http://51.79.208.204:80") // Sử dụng URL frontend thực tế của bạ
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("Content-Type", "Authorization")
                         .allowCredentials(true);
+
+
             }
         };
     }
